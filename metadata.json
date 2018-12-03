@@ -2,9 +2,9 @@
   "name": "tnmt-tcpdp",
   "version": "0.1.0",
   "author": "tnmt",
-  "summary": "",
+  "summary": "This puppet module install and configure tcpdp (TCP dump tool)",
   "license": "MIT",
-  "source": "",
+  "source": "https://github.com/tnmt/puppet-tcpdp",
   "dependencies": [
 
   ],
@@ -38,6 +38,11 @@
     {
       "name": "puppet",
       "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "camptocamp-systemd"
     }
   ],
   "pdk-version": "1.8.0",
