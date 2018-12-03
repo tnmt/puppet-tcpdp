@@ -1,6 +1,6 @@
 class tcpdp::config(
   $interfaces     = $tcpdp::interfaces,
-  $gothree_backup = $tcpdp::$gothree_backup
+  $gothree_backup = $tcpdp::gothree_backup,
 ) {
 
   file { '/usr/lib64/libpcap.so.0.8':
