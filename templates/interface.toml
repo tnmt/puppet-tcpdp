@@ -1,0 +1,27 @@
+[tcpdp]
+pidfile = "/var/run/tcpdp/<%= @if %>.pid"
+dumper = "mysql"
+
+[probe]
+target = "3306"
+interface = "<%= @if %>"
+bufferSize = "128MB"
+immediateMode = true
+
+[log]
+dir = "/var/log/tcpdp/<%= @if %>"
+enable = true
+format = "json"
+rotateEnable = true
+rotationTime = "daily"
+rotationCount = 3
+rotationHook = "/usr/local/bin/query_backup.sh"
+
+[dumpLog]
+dir = "/var/log/tcpdp/<%= @if %>"
+enable = true
+format = "json"
+rotateEnable = true
+rotationTime = "daily"
+rotationCount = 3
+rotationHook = "/usr/local/bin/query_backup.sh"
