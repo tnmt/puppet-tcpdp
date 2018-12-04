@@ -15,7 +15,9 @@ format = "json"
 rotateEnable = true
 rotationTime = "daily"
 rotationCount = 3
+<% if @gothree_backup -%>
 rotationHook = "/usr/local/bin/query_backup.sh"
+<% end -%>
 
 [dumpLog]
 dir = "/var/log/tcpdp/<%= @if %>"
@@ -24,4 +26,6 @@ format = "json"
 rotateEnable = true
 rotationTime = "daily"
 rotationCount = 3
+<% if @gothree_backup -%>
 rotationHook = "/usr/local/bin/query_backup.sh"
+<% end -%>
