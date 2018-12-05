@@ -16,7 +16,7 @@ rotateEnable = true
 rotationTime = "daily"
 rotationCount = 3
 <% if @log_rotation_hook_script -%>
-rotationHook = "<%= log_rotation_hook_script %>"
+rotationHook = "<%= @log_rotation_hook_script %>"
 <% end -%>
 
 [dumpLog]
@@ -27,5 +27,5 @@ rotateEnable = true
 rotationTime = "daily"
 rotationCount = 3
 <% if @dump_rotation_hook_script -%>
-rotationHook = "<%= dump_rotation_hook_script %>"
+rotationHook = "<%= @dump_rotation_hook_script %>"
 <% end -%>
