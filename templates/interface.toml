@@ -5,27 +5,27 @@ dumper = "mysql"
 [probe]
 target = "3306"
 interface = "<%= @if %>"
-bufferSize = "128MB"
-immediateMode = true
+bufferSize = "<%= @probe_buffer_size %>"
+immediateMode = <%= @probe_immidiate_mode %>
 
 [log]
 dir = "/var/log/tcpdp/<%= @if %>"
-enable = true
-format = "json"
-rotateEnable = true
-rotationTime = "daily"
-rotationCount = 3
+enable = <%= @log_enable %>
+format = "<%= @log_format %>"
+rotateEnable = <%= @log_rotate_enable %>
+rotationTime = "<%= @log_rotation_time %>"
+rotationCount = <%= @log_rotation_count %>
 <% if @log_rotation_hook_script -%>
 rotationHook = "<%= @log_rotation_hook_script %>"
 <% end -%>
 
 [dumpLog]
 dir = "/var/log/tcpdp/<%= @if %>"
-enable = true
-format = "json"
-rotateEnable = true
-rotationTime = "daily"
-rotationCount = 3
+enable = <%= @dump_enable %>
+format = "<%= @dump_format %>"
+rotateEnable = <%= @dump_rotate_enable %>
+rotationTime = "<%= @dump_rotation_time %>"
+rotationCount = <%= @dump_rotation_count %>
 <% if @dump_rotation_hook_script -%>
 rotationHook = "<%= @dump_rotation_hook_script %>"
 <% end -%>

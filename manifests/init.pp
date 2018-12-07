@@ -1,8 +1,21 @@
 class tcpdp(
-  $version                   = '0.13.1',
-  $interfaces                = undef,
-  $log_rotation_hook_script  = undef,
-  $dump_rotation_hook_script = undef,
+  String $version                   = '0.13.1',
+  Array[String] $interfaces         = undef,
+  String $dumper                    = 'mysql',
+  String $probe_buffer_size         = '128MB',
+  Boolean $probe_immidiate_mode     = true,
+  Boolean $log_enable               = true,
+  String $log_format                = 'json',
+  Boolean $log_rotate_enable        = true,
+  String $log_rotation_time         = 'daily',
+  Integer $log_rotation_count       = 3,
+  String $log_rotation_hook_script  = undef,
+  Boolean $dump_enable              = true,
+  String  $dump_format              = 'json',
+  Boolean $dump_rotate_enable       = true,
+  String $dump_rotation_time        = 'daily',
+  Integer $dump_rotation_count      = 3,
+  String $dump_rotation_hook_script = undef,
 ) {
 
   include tcpdp::install
