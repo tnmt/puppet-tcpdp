@@ -1,6 +1,7 @@
 class tcpdp::config(
-  $interfaces     = $tcpdp::interfaces,
-  $gothree_backup = $tcpdp::gothree_backup,
+  $interfaces                = $tcpdp::interfaces,
+  $log_rotation_hook_script  = $tcpdp::log_rotation_hook_script,
+  $dump_rotation_hook_script = $tcpdp::dump_rotation_hook_script,
 ) {
 
   file { '/usr/lib64/libpcap.so.0.8':
