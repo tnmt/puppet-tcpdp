@@ -1,4 +1,5 @@
 class tcpdp::config(
+  $manage_interface_toml     = $tcpdp::manage_interface_toml,
   $interfaces                = $tcpdp::interfaces,
   $dumper                    = $tcpdp::dumper,
   $probe_buffer_size         = $tcpdp::probe_buffer_size,
@@ -39,8 +40,10 @@ class tcpdp::config(
       ensure => directory,
     }
 
-    file { "/etc/tcpdp/${if}.toml":
-      content => template('tcpdp/interface.toml'),
+    if $manage_interface_toml {
+      file { "/etc/tcpdp/${if}.toml":
+        content => template('tcpdp/interface.toml'),
+      }
     }
 
     include systemd::systemctl::daemon_reload
