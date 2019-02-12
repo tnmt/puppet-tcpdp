@@ -5,7 +5,7 @@ After=network.target remote-fs.target mysqld.service
 [Service]
 ExecStart=/usr/bin/tcpdp probe -c /etc/tcpdp/<%= @if %>.toml
 Type=simple
-PIDFile=/var/run/tcpdp/<%= @if %>.pid
+PIDFile=/var/run/tcpdp-<%= @if %>.pid
 WorkingDirectory=/
 Restart=on-failure
 RestartSec=30s

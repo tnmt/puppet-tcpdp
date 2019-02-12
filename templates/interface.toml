@@ -1,5 +1,5 @@
 [tcpdp]
-pidfile = "/var/run/tcpdp/<%= @if %>.pid"
+pidfile = "/var/run/tcpdp-<%= @if %>.pid"
 dumper = "mysql"
 
 [probe]

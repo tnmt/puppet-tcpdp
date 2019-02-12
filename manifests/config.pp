@@ -23,10 +23,6 @@ class tcpdp::config(
     target => '/usr/lib64/libpcap.so.1',
   }
 
-  file { '/var/run/tcpdp':
-    ensure => directory,
-  }
-
   file { '/etc/tcpdp':
     ensure => directory,
   }
