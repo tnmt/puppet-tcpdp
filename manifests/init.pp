@@ -18,7 +18,7 @@ class tcpdp(
   Integer $dump_rotation_count                = 3,
   Optional[String] $dump_rotation_hook_script = undef,
   Enum['stopped', 'running'] $service_ensure  = 'running',
-  Enum['true', 'false'] $service_enable       = 'true',
+  Boolean $service_enable                     = true,
 ) {
 
   include tcpdp::install
