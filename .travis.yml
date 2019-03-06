@@ -27,6 +27,10 @@ matrix:
     -
       env: PUPPET_GEM_VERSION="~> 5.0" CHECK=parallel_spec
       rvm: 2.4.4
+    -
+      services: docker
+      env: BEAKER_set=centos7 BEAKER_debug=true
+      script: bundle exec rake beaker
 branches:
   only:
     - master
