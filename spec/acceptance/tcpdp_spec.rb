@@ -4,7 +4,9 @@ require 'spec_helper_acceptance'
 describe 'stns::server class' do
   let(:manifest) do
     <<-EOS
-      class { '::tcpdp': }
+      class { '::tcpdp':
+        interfaces => ['eth0']
+      }
     EOS
   end
 
