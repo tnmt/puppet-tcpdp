@@ -5,6 +5,8 @@
   "summary": "This puppet module install and configure tcpdp (TCP dump tool)",
   "license": "MIT",
   "source": "https://github.com/tnmt/puppet-tcpdp",
+  "project_page": "https://github.com/tnmt/puppet-tcpdp",
+  "issues_url": "https://github.com/tnmt/puppet-tcpdp/issues",
   "dependencies": [
     {
       "name": "camptocamp-systemd",
