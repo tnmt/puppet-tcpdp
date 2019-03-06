@@ -13,24 +13,6 @@ install_ca_certs unless ENV['PUPPET_INSTALL_TYPE'] =~ %r{pe}i
 install_module_on(hosts)
 install_module_dependencies_on(hosts)
 
-RSpec.configure do |_c|
-  hosts.each do |host|
-    # This will be removed, this is temporary to test localisation.
-    if (fact('osfamily') == 'Debian' || fact('osfamily') == 'RedHat') &&
-       (Gem::Version.new(puppet_version) >= Gem::Version.new('4.10.5') &&
-        Gem::Version.new(puppet_version) < Gem::Version.new('5.2.0'))
-      on(host, 'mkdir /opt/puppetlabs/puppet/share/locale/ja')
-      on(host, 'touch /opt/puppetlabs/puppet/share/locale/ja/puppet.po')
-    end
-    # Required for binding tests.
-    if fact('osfamily') == 'RedHat'
-      if fact('operatingsystemmajrelease') =~ %r{7} || fact('operatingsystem') =~ %r{Fedora}
-        shell('yum install -y bzip2')
-      end
-    end
-  end
-end
-
 def idempotent_apply(hosts, manifest, opts = {}, &block)
   block_on hosts, opts do |host|
     file_path = host.tmpfile('apply_manifest.pp')
