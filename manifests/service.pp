@@ -1,3 +1,7 @@
+# Class: tcpdp::service
+# ===========================
+#
+# tcpdp::service manages service
 class tcpdp::service(
   $interfaces     = $tcpdp::interfaces,
   $service_ensure = $tcpdp::service_ensure,

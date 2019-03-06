@@ -1,3 +1,7 @@
+# Class: tcpdp
+# ===========================
+#
+# tcpdp
 class tcpdp(
   String $version                             = '0.16.1',
   Array[String] $interfaces                   = undef,
