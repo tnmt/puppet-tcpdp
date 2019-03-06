@@ -42,10 +42,12 @@
   ],
   "dependencies": [
     {
-      "name": "camptocamp-systemd"
+      "name": "camptocamp-systemd",
+      "version_requirement": ">= 1.0.0 < 3.0.0"
     },
     {
-      "name": "puppet-archive"
+      "name": "puppet-archive",
+      "version_requirement": ">= 2.0.0 < 4.0.0"
     }
   ],
   "pdk-version": "1.8.0",
