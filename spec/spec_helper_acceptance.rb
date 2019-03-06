@@ -2,7 +2,6 @@ require 'beaker-pe'
 require 'beaker-puppet'
 require 'beaker-rspec/spec_helper'
 require 'beaker-rspec/helpers/serverspec'
-require 'acceptance/specinfra_stubs'
 require 'beaker/puppet_install_helper'
 require 'beaker/module_install_helper'
 require 'beaker/i18n_helper'
@@ -23,42 +22,13 @@ RSpec.configure do |_c|
       on(host, 'mkdir /opt/puppetlabs/puppet/share/locale/ja')
       on(host, 'touch /opt/puppetlabs/puppet/share/locale/ja/puppet.po')
     end
-    if fact('osfamily') == 'Debian'
-      # install language on debian systems
-      install_language_on(host, 'ja_JP.utf-8') if not_controller(host)
-      # This will be removed, this is temporary to test localisation.
-    end
     # Required for binding tests.
     if fact('osfamily') == 'RedHat'
       if fact('operatingsystemmajrelease') =~ %r{7} || fact('operatingsystem') =~ %r{Fedora}
         shell('yum install -y bzip2')
       end
     end
-    on host, puppet('module', 'install', 'stahnma/epel')
   end
-end
-
-def setup_test_directory
-  basedir = case os[:family]
-            when 'windows'
-              'c:/concat_test'
-            else
-              '/tmp/concat_test'
-            end
-  pp = <<-MANIFEST
-    file { '#{basedir}':
-      ensure  => directory,
-      force   => true,
-      purge   => true,
-      recurse => true,
-    }
-    file { '#{basedir}/file':
-      content => "file exists\n",
-      force   => true,
-    }
-  MANIFEST
-  apply_manifest(pp)
-  basedir
 end
 
 def idempotent_apply(hosts, manifest, opts = {}, &block)
