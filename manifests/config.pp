@@ -1,3 +1,7 @@
+# Class: tcpdp::config
+# ===========================
+#
+# tcpdp::config configures some parameters
 class tcpdp::config(
   $manage_interface_toml     = $tcpdp::manage_interface_toml,
   $interfaces                = $tcpdp::interfaces,

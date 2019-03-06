@@ -1,3 +1,7 @@
+# Class: tcpdp::install
+# ===========================
+#
+# tcpdp::install install packages
 class tcpdp::install(
   $version = $tcpdp::version,
 ) {
