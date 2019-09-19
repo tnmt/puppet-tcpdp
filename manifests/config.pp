@@ -46,15 +46,17 @@ class tcpdp::config(
       }
     }
 
-    include systemd::systemctl::daemon_reload
-    file { "/usr/lib/systemd/system/tcpdp-${if}.service":
-      ensure  => file,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      content => template('tcpdp/tcpdp.service'),
+    if $::operatingsystemrelease >= 7 {
+      include systemd::systemctl::daemon_reload
+      file { "/usr/lib/systemd/system/tcpdp-${if}.service":
+        ensure  => file,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
+        content => template('tcpdp/tcpdp.service'),
+      }
+      ~> Class['systemd::systemctl::daemon_reload']
     }
-    ~> Class['systemd::systemctl::daemon_reload']
 
   }
 }
