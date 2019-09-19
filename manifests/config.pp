@@ -46,7 +46,7 @@ class tcpdp::config(
       }
     }
 
-    if $::operatingsystemrelease >= 7 {
+    if $::operatingsystemrelease >= '7' {
       include systemd::systemctl::daemon_reload
       file { "/usr/lib/systemd/system/tcpdp-${if}.service":
         ensure  => file,
