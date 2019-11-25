@@ -1,6 +1,6 @@
 [tcpdp]
 pidfile = "/var/run/tcpdp-<%= @if %>.pid"
-dumper = "mysql"
+dumper = "<%= @dumper %>"
 
 [probe]
 target = "3306"
