@@ -9,7 +9,7 @@ class tcpdp::service(
 ) {
 
   $interfaces.each |String $if| {
-    if $::operatingsystemrelease >= '7' { 
+    if $::operatingsystemrelease >= '7' {
       service { "tcpdp-${if}":
         ensure    => $service_ensure,
         enable    => $service_enable,
