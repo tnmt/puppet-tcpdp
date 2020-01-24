@@ -6,6 +6,7 @@ class tcpdp::config(
   $manage_interface_toml     = $tcpdp::manage_interface_toml,
   $interfaces                = $tcpdp::interfaces,
   $dumper                    = $tcpdp::dumper,
+  $target                    = $tcpdp::target,
   $probe_buffer_size         = $tcpdp::probe_buffer_size,
   $probe_immidiate_mode      = $tcpdp::probe_immidiate_mode,
   $log_enable                = $tcpdp::log_enable,

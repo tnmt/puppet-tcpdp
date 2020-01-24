@@ -3,7 +3,7 @@ pidfile = "/var/run/tcpdp-<%= @if %>.pid"
 dumper = "<%= @dumper %>"
 
 [probe]
-target = "3306"
+target = "<%= @target %>"
 interface = "<%= @if %>"
 bufferSize = "<%= @probe_buffer_size %>"
 immediateMode = <%= @probe_immidiate_mode %>

@@ -7,6 +7,7 @@ class tcpdp(
   Array[String] $interfaces                   = undef,
   Boolean $manage_interface_toml              = true,
   String $dumper                              = 'mysql',
+  String $target                              = '3306',
   String $probe_buffer_size                   = '128MB',
   Boolean $probe_immidiate_mode               = true,
   Boolean $log_enable                         = true,
