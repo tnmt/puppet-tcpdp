@@ -1,0 +1,72 @@
+#
+# chkconfig: 345 99 01
+# description: tcpdp query dumper for <%= @if %>
+#
+
+prog=tcpdp-<%= @if %>
+config=/etc/tcpdp/<%= @if %>.toml
+
+pidfile=/var/run/${prog}.pid
+logfile=/var/log/${prog}.log
+lockfile=/var/lock/subsys/${prog}
+
+cmdline="/usr/bin/tcpdp probe -c ${config}"
+RETVAL=0
+
+# System configuration
+unset TMPDIR
+
+if [ -f /etc/sysconfig/${prog} ]; then
+   . /etc/sysconfig/${prog}
+fi
+
+
+# Source function library
+if [ -f /etc/init.d/functions ] ; then
+    . /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+    . /etc/rc.d/init.d/functions
+else
+    exit 1
+fi
+
+start() {
+     echo -n $"Starting ${prog} services: "
+     daemon --pidfile=${pidfile} "${cmdline} &"
+     RETVAL=$?
+     pgrep -f "${cmdline}" > ${pidfile}
+     echo
+     [ $RETVAL -eq 0 ] && touch ${lockfile} || RETVAL=1
+     return $RETVAL
+}
+
+stop() {
+     echo -n $"Stopping ${prog} service: "
+     killproc -p ${pidfile} ${prog}
+     RETVAL=$?
+     echo
+     [ $RETVAL -eq 0 ] && rm -f ${lockfile} ${pidfile}
+     return $RETVAL
+}
+
+case "$1" in
+     start)
+          start
+          ;;
+     stop)
+          stop
+          ;;
+     status)
+          status -p ${pidfile} ${prog}
+          RETVAL=$?
+          ;;
+     restart)
+          stop
+          start
+          ;;
+     *)
+     echo $"Usage: ${prog} {start|stop|status|restart}: "
+     RETVAL=2
+esac
+
+exit $RETVAL

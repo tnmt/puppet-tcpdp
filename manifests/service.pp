@@ -9,12 +9,14 @@ class tcpdp::service(
 ) {
 
   $interfaces.each |String $if| {
-    if $::operatingsystemrelease >= '7' {
-      service { "tcpdp-${if}":
-        ensure    => $service_ensure,
-        enable    => $service_enable,
-        subscribe => File["/usr/lib/systemd/system/tcpdp-${if}.service"],
-      }
+    $service_file = $::operatingsystemmajrelease ? {
+      '6' => "/etc/rc.d/init.d/tcpdp-${if}",
+      '7' => "/usr/lib/systemd/system/tcpdp-${if}.service",
+    }
+    service { "tcpdp-${if}":
+      ensure    => $service_ensure,
+      enable    => $service_enable,
+      subscribe => File[$service_file],
     }
   }
 }
