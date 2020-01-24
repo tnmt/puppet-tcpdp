@@ -1,6 +1,6 @@
 {
   "name": "tnmt-tcpdp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "tnmt",
   "summary": "This puppet module install and configure tcpdp (TCP dump tool)",
   "license": "MIT",
