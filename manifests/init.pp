@@ -3,7 +3,7 @@
 #
 # tcpdp
 class tcpdp(
-  String $version                             = '0.16.1',
+  String $version                             = '0.21.2',
   Array[String] $interfaces                   = undef,
   Boolean $manage_interface_toml              = true,
   String $dumper                              = 'mysql',
