@@ -48,7 +48,6 @@ class tcpdp::config(
     }
 
     if $::operatingsystemmajrelease >= '7' {
-      include systemd::systemctl::daemon_reload
       file { "/usr/lib/systemd/system/tcpdp-${if}.service":
         ensure  => file,
         owner   => 'root',
@@ -56,7 +55,7 @@ class tcpdp::config(
         mode    => '0644',
         content => template('tcpdp/tcpdp.service'),
       }
-      ~> Class['systemd::systemctl::daemon_reload']
+      ~> systemd::daemon_reload{ 'tcpdp': }
     }
     elsif $::operatingsystemmajrelease == '6' {
       file{ "/etc/rc.d/init.d/tcpdp-${if}":
