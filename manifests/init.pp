@@ -3,7 +3,7 @@
 #
 # tcpdp
 class tcpdp(
-  String $version                             = '0.22.0',
+  String $version                             = '0.23.9',
   Array[String] $interfaces                   = undef,
   Boolean $manage_interface_toml              = true,
   String $dumper                              = 'mysql',
@@ -24,7 +24,12 @@ class tcpdp(
   Optional[String] $dump_rotation_hook_script = undef,
   Enum['stopped', 'running'] $service_ensure  = 'running',
   Boolean $service_enable                     = true,
+  Boolean $use_systemd                        = true,
 ) {
+
+  if ($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['major'] == '6') {
+    $use_systemd = false
+  }
 
   include tcpdp::install
   include tcpdp::config

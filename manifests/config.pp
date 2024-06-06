@@ -21,6 +21,7 @@ class tcpdp::config(
   $dump_rotation_time        = $tcpdp::dump_rotation_time,
   $dump_rotation_count       = $tcpdp::dump_rotation_count,
   $dump_rotation_hook_script = $tcpdp::dump_rotation_hook_script,
+  $use_systemd               = $tcpdp::use_systemd,
 ) {
 
   file { '/usr/lib64/libpcap.so.0.8':
@@ -47,7 +48,7 @@ class tcpdp::config(
       }
     }
 
-    if $::operatingsystemmajrelease >= '7' {
+    if $use_systemd {
       file { "/usr/lib/systemd/system/tcpdp-${if}.service":
         ensure  => file,
         owner   => 'root',
@@ -57,7 +58,7 @@ class tcpdp::config(
       }
       ~> systemd::daemon_reload{ 'tcpdp': }
     }
-    elsif $::operatingsystemmajrelease == '6' {
+    else {
       file{ "/etc/rc.d/init.d/tcpdp-${if}":
         ensure  => file,
         owner   => 'root',
